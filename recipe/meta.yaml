@@ -9,8 +9,8 @@ package:
   version: {{ version.split('.')[:3] | join('.') }}
 
 source:
-  - url: https://github.com/ROCm/flash-attention/archive/refs/tags/{{ source_tag }}.tar.gz
-    sha256: d32a2da527d76d16b734487c5112020a8be4036a02d84ba3c47f0b9d577dcd01
+  - git_url: https://github.com/ROCm/flash-attention.git
+    git_tag: {{ source_tag }}
 
 build:
   number: 4
@@ -26,10 +26,14 @@ build:
       export PYTORCH_ROCM_ARCH="${ROCK_THE_CONDA_ROCM_GPU_TARGETS}"
     fi
     {% endif %}
+    if [[ -f .gitmodules ]]; then
+      git submodule update --init --recursive
+    fi
     {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
     - MAX_JOBS=4
+    - FLASH_ATTENTION_FORCE_BUILD=TRUE
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0;10.0;12.0+PTX  # [cuda_compiler_version != "None"]
     - ROCK_THE_CONDA_ROCM_GPU_TARGETS                     # [hip_compiler_version != "None"]
   # Satisfy linter by not having duplicate skip keys
