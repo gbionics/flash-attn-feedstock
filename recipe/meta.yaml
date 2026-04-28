@@ -32,7 +32,8 @@ build:
     {{ PYTHON }} -m pip install . -vvv --no-deps --no-build-isolation
   script_env:
     # Limit MAX_JOBS in order to prevent runners from crashing
-    - MAX_JOBS=4
+    # On rock-the-conda the RAM is ~128 GB, so we can increase this number up to 24
+    - MAX_JOBS=24
     - FLASH_ATTENTION_FORCE_BUILD=TRUE
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0;10.0;12.0+PTX  # [cuda_compiler_version != "None"]
     - ROCK_THE_CONDA_ROCM_GPU_TARGETS                     # [hip_compiler_version != "None"]
