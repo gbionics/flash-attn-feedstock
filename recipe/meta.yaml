@@ -13,7 +13,7 @@ source:
     git_tag: {{ source_tag }}
 
 build:
-  number: 4
+  number: 5
   script: |
     {% if hip_compiler_version != "None" %}
     export USE_ROCM=1
@@ -22,8 +22,8 @@ build:
     export ROCM_HOME="${BUILD_PREFIX}"
     export HIP_PATH="${BUILD_PREFIX}"
     export HIP_ROOT_DIR="${BUILD_PREFIX}"
-    if [[ -n "${ROCK_THE_CONDA_ROCM_GPU_TARGETS:-}" ]]; then
-      export GPU_ARCHS="${ROCK_THE_CONDA_ROCM_GPU_TARGETS}"
+    if [[ -n "${CONDA_FORGE_DEFAULT_ROCM_GPU_TARGETS:-}" ]]; then
+      export GPU_ARCHS="${CONDA_FORGE_DEFAULT_ROCM_GPU_TARGETS}"
     fi
     {% endif %}
     if [[ -f .gitmodules ]]; then
@@ -36,12 +36,9 @@ build:
     - MAX_JOBS=24
     - FLASH_ATTENTION_FORCE_BUILD=TRUE
     - TORCH_CUDA_ARCH_LIST=8.0;8.6;8.9;9.0;10.0;12.0+PTX  # [cuda_compiler_version != "None"]
-    - ROCK_THE_CONDA_ROCM_GPU_TARGETS                     # [hip_compiler_version != "None"]
-  # Satisfy linter by not having duplicate skip keys
-  # skip: true  # [(hip_compiler_version == "None")]
+    - CONDA_FORGE_DEFAULT_ROCM_GPU_TARGETS                 # [hip_compiler_version != "None"]
+  # Keep Flash Attention disabled until its ROCm build is ready.
   skip: true
-  # debugging skips below
-  # skip: true  # [py!=313]
 
 requirements:
   build:
