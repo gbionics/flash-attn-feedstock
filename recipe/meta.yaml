@@ -13,7 +13,7 @@ source:
     git_tag: {{ source_tag }}
 
 build:
-  number: 5
+  number: 6
   script: |
     {% if hip_compiler_version != "None" %}
     export USE_ROCM=1
@@ -58,6 +58,22 @@ requirements:
     - libcusolver-dev                            # [cuda_compiler_version != "None"]
     - libcusparse-dev                            # [cuda_compiler_version != "None"]
     - rocm-core {{ hip_compiler_version }}.*     # [hip_compiler_version != "None"]
+    # Development dependencies for Torch extensions.
+    - hip-devel  # [hip_compiler_version != "None"]
+    - librocblas-devel  # [hip_compiler_version != "None"]
+    - librocsolver-devel  # [hip_compiler_version != "None"]
+    - librocrand-devel  # [hip_compiler_version != "None"]
+    - librocprim-devel  # [hip_compiler_version != "None"]
+    - librocthrust-devel  # [hip_compiler_version != "None"]
+    - libhipcub-devel  # [hip_compiler_version != "None"]
+    - libhipblas-common-devel  # [hip_compiler_version != "None"]
+    - libhipblas-devel  # [hip_compiler_version != "None"]
+    - libhipblaslt-devel  # [hip_compiler_version != "None"]
+    - libhipfft-devel  # [hip_compiler_version != "None"]
+    - libhipsparse-devel  # [hip_compiler_version != "None"]
+    - libhipsolver-devel  # [hip_compiler_version != "None"]
+    - libhiprand-devel  # [hip_compiler_version != "None"]
+    - libmiopen-hip-devel  # [hip_compiler_version != "None"]
     - pip
     - python
     - pytorch
@@ -77,6 +93,22 @@ outputs:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
         - cuda-cudart-dev                            # [cuda_compiler_version != "None"]
         - rocm-core {{ hip_compiler_version }}.*     # [hip_compiler_version != "None"]
+        # Development dependencies for Torch extensions.
+        - hip-devel  # [hip_compiler_version != "None"]
+        - librocblas-devel  # [hip_compiler_version != "None"]
+        - librocsolver-devel  # [hip_compiler_version != "None"]
+        - librocrand-devel  # [hip_compiler_version != "None"]
+        - librocprim-devel  # [hip_compiler_version != "None"]
+        - librocthrust-devel  # [hip_compiler_version != "None"]
+        - libhipcub-devel  # [hip_compiler_version != "None"]
+        - libhipblas-common-devel  # [hip_compiler_version != "None"]
+        - libhipblas-devel  # [hip_compiler_version != "None"]
+        - libhipblaslt-devel  # [hip_compiler_version != "None"]
+        - libhipfft-devel  # [hip_compiler_version != "None"]
+        - libhipsparse-devel  # [hip_compiler_version != "None"]
+        - libhipsolver-devel  # [hip_compiler_version != "None"]
+        - libhiprand-devel  # [hip_compiler_version != "None"]
+        - libmiopen-hip-devel  # [hip_compiler_version != "None"]
         - python
         - pytorch
         - pytorch * {{ torch_proc_type }}*
@@ -111,6 +143,22 @@ outputs:
         - cuda-cudart-dev                            # [cuda_compiler_version != "None"]
         - libcublas-dev                              # [cuda_compiler_version != "None"]
         - rocm-core {{ hip_compiler_version }}.*     # [hip_compiler_version != "None"]
+        # Development dependencies for Torch extensions.
+        - hip-devel  # [hip_compiler_version != "None"]
+        - librocblas-devel  # [hip_compiler_version != "None"]
+        - librocsolver-devel  # [hip_compiler_version != "None"]
+        - librocrand-devel  # [hip_compiler_version != "None"]
+        - librocprim-devel  # [hip_compiler_version != "None"]
+        - librocthrust-devel  # [hip_compiler_version != "None"]
+        - libhipcub-devel  # [hip_compiler_version != "None"]
+        - libhipblas-common-devel  # [hip_compiler_version != "None"]
+        - libhipblas-devel  # [hip_compiler_version != "None"]
+        - libhipblaslt-devel  # [hip_compiler_version != "None"]
+        - libhipfft-devel  # [hip_compiler_version != "None"]
+        - libhipsparse-devel  # [hip_compiler_version != "None"]
+        - libhipsolver-devel  # [hip_compiler_version != "None"]
+        - libhiprand-devel  # [hip_compiler_version != "None"]
+        - libmiopen-hip-devel  # [hip_compiler_version != "None"]
         - python
         - pytorch
         - pytorch * {{ torch_proc_type }}*
@@ -141,6 +189,22 @@ outputs:
         - cuda-version {{ cuda_compiler_version }}  # [cuda_compiler_version != "None"]
         - cuda-cudart-dev                            # [cuda_compiler_version != "None"]
         - rocm-core {{ hip_compiler_version }}.*     # [hip_compiler_version != "None"]
+        # Development dependencies for Torch extensions.
+        - hip-devel  # [hip_compiler_version != "None"]
+        - librocblas-devel  # [hip_compiler_version != "None"]
+        - librocsolver-devel  # [hip_compiler_version != "None"]
+        - librocrand-devel  # [hip_compiler_version != "None"]
+        - librocprim-devel  # [hip_compiler_version != "None"]
+        - librocthrust-devel  # [hip_compiler_version != "None"]
+        - libhipcub-devel  # [hip_compiler_version != "None"]
+        - libhipblas-common-devel  # [hip_compiler_version != "None"]
+        - libhipblas-devel  # [hip_compiler_version != "None"]
+        - libhipblaslt-devel  # [hip_compiler_version != "None"]
+        - libhipfft-devel  # [hip_compiler_version != "None"]
+        - libhipsparse-devel  # [hip_compiler_version != "None"]
+        - libhipsolver-devel  # [hip_compiler_version != "None"]
+        - libhiprand-devel  # [hip_compiler_version != "None"]
+        - libmiopen-hip-devel  # [hip_compiler_version != "None"]
         - python
         - pytorch
         - pytorch * {{ torch_proc_type }}*
